@@ -4,10 +4,17 @@ const boton = document.getElementById(`boton`);
 const cerrar = document.getElementById(`cerrar`);
 const localStorage = window.localStorage;
 
+
 let savedPost = localStorage.getItem('posts');
 let posts = [];
 if(savedPost != null){
     posts = JSON.parse(savedPost);
+    console.log(posts);
+    for(let i=0 ; i<posts.length ; i++){
+        let post = new Task(posts[i].message);
+        post.render();
+    }
+
 }
 console.log(savedPost);
 console.log(posts);
