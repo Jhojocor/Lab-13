@@ -74,7 +74,7 @@
     /*background-color: aqua;*/
     /*overflow: hidden;*/
 }
-#cerrar{
+.cerrar{
     width: 15px;
     height: 15px;
     align-items: flex-end;
