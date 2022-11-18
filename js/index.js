@@ -62,7 +62,8 @@ function addevents(posts){
         let borrar = document.getElementById(`cerrar${post.id}`);
         borrar.addEventListener(`click`, function(){
             //alert(post.message+"\n"+post.id);
-            posts.splice(post, 1);
+            posts.splice([i], 1);
+            //delete(posts[i]);
             let json = JSON.stringify(posts);
             savedPost = json;
             localStorage.setItem('posts', json);
