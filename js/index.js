@@ -10,6 +10,11 @@ let savedPost = localStorage.getItem('posts');
 let posts = [];
 
 function crearlist(){
+    contenedor.innerHTML = "To do"
+    contenedor2.innerHTML = "Doing"
+    contenedor3.innerHTML = "Done"
+
+
     if(savedPost != null){
     posts = JSON.parse(savedPost);
     console.log(posts);
@@ -36,13 +41,42 @@ function addevents(posts){
         let avanzar = document.getElementById(`Next${post.id}`);
         avanzar.addEventListener(`click`, function(){
             //alert(post.message+"\n"+post.id);
-            
+            if(posts[i].estado<2){
+                posts[i].estado += 1
+                let json = JSON.stringify(posts);
+                savedPost = json;
+                localStorage.setItem('posts', json);
+                //Volver a recargar los post
+                crearlist();
+            }
+        });
+        let retroceder = document.getElementById(`Back${post.id}`);
+        retroceder.addEventListener(`click`, function(){
+            //alert(post.message+"\n"+post.id);
+            if(posts[i].estado>0){
+                posts[i].estado -= 1
+                let json = JSON.stringify(posts);
+                savedPost = json;
+                localStorage.setItem('posts', json);
+                //Volver a recargar los post
+                crearlist()
+            }
+        });
+        let borrar = document.getElementById(`cerrar${post.id}`);
+        borrar.addEventListener(`click`, function(){
+            //alert(post.message+"\n"+post.id);
+            posts[i].estado -= 1
+            let json = JSON.stringify(posts);
+            savedPost = json;
+            localStorage.setItem('posts', json);
+            //Volver a recargar los post
+            crearlist()
         });
     }
 }
 
 function doPost(){
-    let id = 0;
+    let id = 1;
     let savedPost = localStorage.getItem('posts');
     if(savedPost != null){
         let posts = JSON.parse(savedPost);
@@ -53,32 +87,8 @@ function doPost(){
     let json = JSON.stringify(posts);
     localStorage.setItem('posts', json);
     crearlist();
+    //reiniciando la pag se agregan los datos nuevos
 }
 
 boton.addEventListener('click', doPost);
 
-
-
-
-/*function tarjeta(){
-    var texto = document.getElementById(`escribir`).value;
-    contenedor.innerHTML += `<div id="mimodal" class="modulo">
-    <img id="cerrar" src="https://cdn-icons-png.flaticon.com/512/54/54972.png" alt="">
-    <div class="organizador">
-        <p>${texto}</p>
-    </div>
-    <div>
-        <img class="cuadra" src="https://images.emojiterra.com/openmoji/v13.1/512px/1f7e5.png" alt="">
-        <img class="cuadra" src="https://creazilla-store.fra1.digitaloceanspaces.com/emojis/44983/blue-square-emoji-clipart-md.png" alt="">
-    </div>
-</div>`
-}
-
-function closeModal(e){
-    e.preventDefault();
-    mimodal.classList.add(`hide`);
-}
-
-cerrar.addEventListener(`click`, closeModal);
-boton.addEventListener(`click`, tarjeta);
-*/
