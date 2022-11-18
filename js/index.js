@@ -56,7 +56,7 @@ function addevents(posts){
             if(posts[i].estado>0){
                 posts[i].estado -= 1
                 let json = JSON.stringify(posts);
-                savedPost = json;
+                sa avedPost = json;
                 localStorage.setItem('posts', json);
                 //Volver a recargar los post
                 crearlist()
