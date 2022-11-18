@@ -6,10 +6,10 @@ const boton = document.getElementById(`boton`);
 const cerrar = document.getElementById(`cerrar`);
 const localStorage = window.localStorage;
 
-let savedPost = localStorage.getItem('posts');
 let posts = [];
 
 function crearlist(){
+    let savedPost = localStorage.getItem('posts');
     contenedor.innerHTML = "To do"
     contenedor2.innerHTML = "Doing"
     contenedor3.innerHTML = "Done"
