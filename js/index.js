@@ -79,11 +79,13 @@ function doPost(){
         let posts = JSON.parse(savedPost);
         id = posts.length+1;
     }
+    if(escribir1.value !== ""){
     let post = new Task(escribir1.value, 0, id);
     posts.push(post);
     let json = JSON.stringify(posts);
     localStorage.setItem('posts', json);
     crearlist();
+    }
     //reiniciando la pag se agregan los datos nuevos
 }
 
