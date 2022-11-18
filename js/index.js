@@ -13,8 +13,6 @@ function crearlist(){
     contenedor.innerHTML = "To do"
     contenedor2.innerHTML = "Doing"
     contenedor3.innerHTML = "Done"
-
-
     if(savedPost != null){
     posts = JSON.parse(savedPost);
     console.log(posts);
@@ -40,7 +38,6 @@ function addevents(posts){
         let post = new Task(posts[i].message, posts[i].estado, posts[i].id);
         let avanzar = document.getElementById(`Next${post.id}`);
         avanzar.addEventListener(`click`, function(){
-            //alert(post.message+"\n"+post.id);
             if(posts[i].estado<2){
                 posts[i].estado += 1
                 let json = JSON.stringify(posts);
@@ -56,7 +53,7 @@ function addevents(posts){
             if(posts[i].estado>0){
                 posts[i].estado -= 1
                 let json = JSON.stringify(posts);
-                sa avedPost = json;
+                savedPost = json;
                 localStorage.setItem('posts', json);
                 //Volver a recargar los post
                 crearlist()
@@ -65,7 +62,7 @@ function addevents(posts){
         let borrar = document.getElementById(`cerrar${post.id}`);
         borrar.addEventListener(`click`, function(){
             //alert(post.message+"\n"+post.id);
-            posts[i].estado -= 1
+            posts.splice(post, 1);
             let json = JSON.stringify(posts);
             savedPost = json;
             localStorage.setItem('posts', json);
